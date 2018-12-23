@@ -1,0 +1,188 @@
+body{
+  &.auth{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+
+    min-height: 100vh;
+
+    .background-container{
+      @include primary-color-top;
+
+      position: fixed;
+      top: 0px;
+      bottom: 0px;
+      left: 0px;
+      right: 0px;
+
+    }
+
+    .auth-languages{
+      position: fixed;
+      top: 15px;
+      bottom: auto;
+      left: 0px;
+      right: 0px;
+      z-index: 5;
+
+      // Language container
+      .language-container{
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+        flex-direction: row;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: end;
+        -ms-flex-pack: end;
+        justify-content: flex-end;
+
+        .dropdown{
+          > a{
+
+            &.custom-btn{
+              color: $white;
+              opacity: 1;
+
+              @include on-event{
+                color: $white;
+                opacity: 0.8;
+              }
+            }
+
+            @include on-event{
+              text-decoration: none;
+            }
+          }
+
+          .dropdown-menu{
+            border-radius: 0px;
+            border: none;
+            margin: 0px;
+            padding: 0px;
+            right: 0px;
+            left: auto;
+            background-color: $white;
+            margin-top: 10px;
+
+            &:before{
+              content: "";
+              position: absolute;
+              top: -16px;
+              bottom: auto;
+              right: 8px;
+              left: auto;
+              font-size: 0px;
+              border: 8px solid $transparent;
+              border-bottom-color: $white;
+            }
+
+            a{
+              padding: 5px 15px;
+              color: $text-color;
+              font-weight: bold;
+
+              span{
+                margin-right: 5px;
+              }
+
+              &.active{
+                color: tint($text-color, 30%);
+                cursor: not-allowed;
+                pointer-events: none;
+
+                span{
+                  opacity: 0.5;
+                }
+
+                @include on-event{
+                  color: tint($text-color, 30%);
+                }
+              }
+
+              @include on-event{
+                text-decoration: none;
+                color: $hover-color;
+                background-color: $transparent;
+              }
+            }
+          }
+        }
+      }
+      // End Language container
+    }
+
+    // Sign in
+    .sign-in-form{
+      .form{
+        padding-bottom: 0px;
+
+        .auth-alerts{
+          padding-top: 20px;
+        }
+      }
+    }
+
+    // Flash
+    .flash-alert{
+      color: $sixth-color;
+      text-align: center;
+
+      span{
+        display: block;
+
+        i{
+          padding-bottom: 10px;
+        }
+      }
+    }
+
+    .flash-notice{
+      color: $third-color;
+      text-align: center;
+
+      span{
+        display: block;
+
+        i{
+          padding-bottom: 10px;
+        }
+      }
+    }
+
+    // Confirmation and Unlock messages
+    .message{
+      h1{
+        font-size: 20px;
+        font-weight: bold;
+        text-align: center;
+        padding-bottom: 20px;
+      }
+
+      p{
+        font-size: 18px;
+        font-weight: bold;
+        text-align: center;
+      }
+
+      .redirect-container{
+        padding-top: 20px;
+      }
+    }
+
+  }
+}

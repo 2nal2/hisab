@@ -1,0 +1,105 @@
+// ------------------------------------------------------------
+// This file contains all styles related to the details pages
+// ------------------------------------------------------------
+
+.details{
+  &.details-pdf{
+    padding-top: 10px;
+  }
+
+  .general-info{
+    .main-info{
+      padding-top: 15px;
+
+      p{
+        text-align: center;
+        margin: 0px;
+      }
+
+      .name{
+        padding-bottom: 10px;
+      }
+    }
+
+    .main-buttons{
+      text-align: center;
+      float: left;
+      width: 100%;
+      padding-top: 15px;
+
+      .button-container{
+        padding-bottom: 15px;
+
+        &:last-child{
+          padding-bottom: 0px;
+        }
+
+        .btn-general{
+          i{
+            padding-right: 5px;
+          }
+        }
+      }
+    }
+  }
+
+  .detail-info{
+    .info{
+      border-bottom: 1px solid #ddd;
+      padding: 10px 0px;
+
+      &:first-child{
+        padding-top: 0px;
+      }
+
+      &:last-child{
+        border-bottom: none;
+        padding-bottom: 0px;
+      }
+    }
+
+    p{
+      margin: 0px;
+    }
+
+    title{
+      padding-bottom: 5px;
+    }
+
+    &.false{
+      .info{
+        border-bottom-color: tint($sixth-color, 80%);
+      }
+    }
+  }
+}
+
+@media (min-width: 768px){
+
+  .details{
+    .general-info{
+      .main-buttons{
+        .button-container{
+          padding-bottom: 0px;
+        }
+      }
+    }
+  }
+
+}
+
+@media (min-width: 992px){
+
+  .details{
+    .general-info{
+      .main-buttons{
+        .button-container{
+          &:last-child{
+            padding-top: 15px;
+          }
+        }
+      }
+    }
+  }
+
+}

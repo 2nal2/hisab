@@ -5,3 +5,19 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+
+require "faker"
+
+puts "Seeding tests"
+100.times do |count|
+  begin
+    Test.create(
+      title: Faker::Name.first_name,
+      description: Faker::Food.description,
+      status: Faker::Boolean.boolean(0.8)
+    )
+  rescue StandardError => e
+    puts "Error found #{e.to_s}"
+  end
+end

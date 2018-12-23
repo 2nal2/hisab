@@ -1,0 +1,23 @@
+.fix-footer
+
+%footer
+  %section.footer-top
+    .container-fluid
+      .row
+        .col-xs-12.col-sm-1.image-container
+          .footer-legal
+            = image_tag "https://www.bayer.com/favicon.ico", class: "img-responsive"
+
+        .col-xs-12.col-sm-7
+          .footer-legal
+            %p
+              %span
+                © #{Time.now.year}
+              %span
+                Bayer.
+                %span Nicaragua
+
+        .col-xs-12.col-sm-4
+          .footer-legal
+            %p.request-info
+              %span= request.remote_ip

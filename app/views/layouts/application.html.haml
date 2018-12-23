@@ -1,0 +1,65 @@
+!!!
+%html
+  %head
+    %title
+      HISAB - #{yield(:title)}
+
+    -# Meta information
+    %meta{charset: "utf-8"}/
+    %meta{content: "text/html;charset=utf-8", "http-equiv": "content-type"}/
+    %meta{content: "IE=edge", "http-equiv": "X-UA-Compatible"}/
+    %meta{content: "width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui", name: "viewport"}/
+    -# End Meta information
+
+    -# Favicon settings
+    =# favicon_link_tag asset_path("img/favicon.png"), rel: "icon", type: "image/png"
+
+    -# CSRF Tags
+    = csrf_meta_tags
+    -# End CSRF Tags
+
+    -# CSP Tags
+    = csp_meta_tag
+    -# End CSP Tags
+
+    -# Application assets
+    = stylesheet_link_tag "application", media: "all", "data-turbolinks-track": "reload"
+    = javascript_include_tag "application", "data-turbolinks-track": "reload"
+    -# End Application assets
+
+  %body
+    -# Render header
+    = render "layouts/header"
+    -# End Render header
+
+    -# Fix body (affix)
+    .fix-body
+    -# End Fix body (affix)
+
+    -# Render alerts
+    = render "layouts/alerts"
+    -# End Render alerts
+
+    -# Preloader
+    .preloader
+      .spinner
+        .bounce1
+        .bounce2
+        .bounce3
+    -# End Preloader
+
+    -# Main content
+    = yield
+    -# End Main content
+
+    -# Render footer
+    = render "layouts/footer"
+    -# End Render footer
+
+    -# Material input script
+    = javascript_include_tag "material-input", "data-turbolinks-track": "reload"
+    -# End Material input script
+
+    -# Form script
+    = javascript_include_tag "form", "data-turbolinks-track": "reload"
+    -# End Form script

@@ -4,7 +4,14 @@ class TestsController < ApplicationController
   # GET /tests
   # GET /tests.json
   def index
-    @tests = Test.all
+    @show_all = params[:show] == "all" ? true : false # View All (Enabled and Disabled)
+    @tests = Test.search(params[:search], @show_all).paginate(page: params[:page], per_page: 15) # Tests with pagination
+    @count = @tests.count
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /tests/1
@@ -62,13 +69,13 @@ class TestsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_test
-      @test = Test.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_test
+    @test = Test.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def test_params
-      params.require(:test).permit(:title, :description, :status)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def test_params
+    params.require(:test).permit(:title, :description, :status, :image)
+  end
 end

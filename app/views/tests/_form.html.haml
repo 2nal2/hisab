@@ -1,0 +1,70 @@
+-# Form
+= form_for @test, html: {autocomplete: "off", multipart: true} do |f|
+  %section.form
+    .container
+      .row
+        .col-xs-12
+          -# Show errors
+          = render partial: "partials/form_errors", locals: {resource: @test, model: Test}
+          -# End Show errors
+
+        .col-xs-12.col-md-5.col-lg-4
+          -# Material card
+          %div{class: "material-card shadow-card #{@test.status}"}
+            .row.no-margin
+              .col-xs-12.no-padding
+                -# General information
+                .general-info
+                  -# Image
+                  .image-container
+                    - if @test.image.attached?
+                      = image_tag url_for(@test.image), id: "preview-image", class: "img-responsive"
+
+                    - else
+                      = image_tag url_for("https://s3.amazonaws.com/betterandnice/images/default/default.png"), id: "preview-image", class: "img-responsive"
+                  -# End Image
+
+                  -# Input imagen
+                  .form-group
+                    .input-group
+                      %input#filename.form-control{readonly: "readonly", type: "text"}/
+
+                      %span.input-group-btn
+                        %span.btn.btn-general.btn-file
+                          %i.fas.fa-upload
+                          = f.file_field :image, id: "select-image", accept: "image/*"
+                  -# End Input imagen
+                -# End General information
+          -# End Material card
+
+        .col-xs-12.col-md-7.col-lg-8
+          -# Material card
+          %div{class: "material-card shadow-card #{@test.status}"}
+            .row.no-margin
+              .col-xs-12.no-padding
+                .form-info
+                  .form-group
+                    = f.text_field :title, class: "form-control input", placeholder: t("activerecord.attributes.test.title"), required: true
+                    %label
+                      %b= t("activerecord.attributes.test.title")
+                    .border-bottom
+
+                  .form-group
+                    = f.text_area :description, class: "form-control input text-area",placeholder: t("activerecord.attributes.test.description")
+                    %label
+                      %b= t("activerecord.attributes.test.description")
+                    .border-bottom
+
+                  -# Buttons
+                  .main-buttons
+                    .col-xs-12.col-sm-12.button-container.no-padding
+                      = button_tag type: "reset", id: "reset-button", class: "btn btn-general" do
+                        %i.fas.fa-eraser
+                        %span= t("views.form.restart")
+
+                      = f.button class: "btn btn-general", data: {disable_with: "<i class='fas fa-spinner fa-spin'></i>"} do
+                        %i.fas.fa-save
+                        %span= t("views.form.save")
+                  -# End Buttons
+          -# End Material card
+-# End Form

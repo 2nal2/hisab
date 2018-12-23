@@ -1,0 +1,42 @@
+%body
+  %header#back-top.header-top.navbar-fixed-top{"data-custom-affix": "1", role: "navigation"}
+    %section.top-navbar
+      .container-fluid.header-options
+        .navbar-brand-top
+          .row.navbar-brand-row
+            .col-xs-12.col-sm-4.col-md-6.hidden-xs
+              -# Logo tablet and mobile
+              .logo-top
+                = link_to (root_path) do
+                  = image_tag "https://4-h.org/wp-content/uploads/2016/02/Logo_Bayer-Org-Home-Partners.png", class: "img-responsive"
+
+            .col-xs-12.col-sm-8.col-md-6
+              -# Settings container
+              .settings-container
+                -# Render notifications
+                = render "layouts/notifications"
+                -# End Render notifications
+
+                -# Render user
+                = render "layouts/user"
+                -# End Render user
+
+      -# Navbar default
+      %nav.navbar.navbar-default{role: "navigation"}
+        .container
+          -# Navbar mobile
+          .navbar-header
+            -# Navbar toggle
+            %button.navbar-toggle.collapsed{"aria-expanded": "false", "data-target": "#navbar", "data-toggle": "collapse", type: "button"}
+              %span.sr-only Toggle navigation
+              %span.icon-bar.top-bar
+              %span.icon-bar.middle-bar
+              %span.icon-bar.bottom-bar
+
+            -# Logo mobile
+            = link_to (root_path), class: "navbar-brand visible-xs" do
+              = image_tag "https://4-h.org/wp-content/uploads/2016/02/Logo_Bayer-Org-Home-Partners.png", class: "img-responsive"
+
+          -# Render navigation
+          = render "layouts/navigation"
+          -# End Render navigation

@@ -1,0 +1,107 @@
+-# Details
+%section.details
+  .container
+    -# Title
+    .row.title-container
+      .col-xs-12.col-sm-6.col-md-8
+        -# Heading
+        %h1{class: "#{@test.status}"}
+          %i.fas.fa-id-card
+          = @test.title
+        -# End Heading
+
+      .col-xs-12.col-sm-6.col-md-4.text-right
+        -# Export button
+        .btn-container.inline
+          = link_to (test_path(@test, format: "pdf")), target: "_blank", class: "btn btn-general" do
+            %i.fas.fa-download
+            %span= t("views.index.export")
+        -# End Export button
+    -# End Title
+
+    -# Breadcrumb
+    .row
+      .col-xs-12.hidden-xs
+        .breadcrumb-container
+          %ol.breadcrumb
+            %li
+              = link_to (root_path) do
+                %i.fas.fa-tachometer-alt
+                %span= t("header.navigation.dashboard")
+            %li
+              = link_to (tests_path) do
+                %i.fas.fa-list-alt
+                %span= t("header.navigation.tests")
+            %li.active
+              %i.fas.fa-id-card
+              = @test.title
+    -# End Breadcrumb
+
+    -# Information
+    .row
+      .col-xs-12.col-md-5.col-lg-4
+        -# Material card
+        %div{class: "material-card shadow-card #{@test.status}"}
+          .row.no-margin
+            .col-xs-12.no-padding
+              -# General information
+              .general-info
+                -# Image
+                .image-container
+                  - if @test.image.attached?
+                    = image_tag url_for(@test.image), class: "img-responsive"
+
+                  - else
+                    = image_tag url_for("https://s3.amazonaws.com/betterandnice/images/default/default.png"), class: "img-responsive"
+                -# End Image
+
+                .main-info
+                  %p= t("views.show.created_at", time: time_ago_in_words(@test.created_at))
+                  %p= t("views.show.updated_at", time: time_ago_in_words(@test.updated_at))
+
+                .main-buttons
+                  .col-xs-12.col-sm-4.col-md-6.button-container.no-padding
+                    = link_to (edit_test_path(@test)), class: "btn btn-general" do
+                      %i.fas.fa-edit
+                      %span= t("views.show.edit")
+
+                  .col-xs-12.col-sm-4.col-md-6.button-container.no-padding
+                    = link_to (edit_test_path(@test)), class: "btn btn-general" do
+                      %i.fas.fa-history
+                      %span= t("views.show.history")
+
+                  .col-xs-12.col-sm-4.col-md-12.button-container.no-padding
+                    - if(@test.status)
+                      = link_to (edit_test_path(@test)), method: "patch", class: "btn btn-general" do
+                        %i.fas.fa-times
+                        %span= t("views.show.disable")
+
+                    - else
+                      = link_to (edit_test_path(@test)), method: "patch", class: "btn btn-general" do
+                        %i.fas.fa-check
+                        %span= t("views.show.enable")
+              -# End General information
+        -# End Material card
+
+      .col-xs-12.col-md-7.col-lg-8
+        -# Material card
+        %div{class: "material-card shadow-card #{@test.status}"}
+          .row.no-margin
+            .col-xs-12.no-padding
+              %div{class: "detail-info #{@test.status}"}
+                -# Set attributes
+                - attributes = [["title", "title"], ["description", "description"], ["status", "status"]]
+
+                - attributes.each do |title, attribute|
+                  .info
+                    %p.title
+                      %b= t("activerecord.attributes.test.#{title}")
+
+                    - if attribute == "status"
+                      %p= @test["#{attribute}"] ? t("views.show.enabled") : t("views.show.disabled")
+
+                    - else
+                      %p= @test["#{attribute}"]
+        -# End Material card
+    -# End Information
+-# End Details
