@@ -15,7 +15,7 @@
         .btn-container.inline
           = link_to (test_path(@test, format: "pdf")), target: "_blank", class: "btn btn-general" do
             %i.fas.fa-download
-            %span= t("views.index.export")
+            %span= "exportar"
         -# End Export button
     -# End Title
 
@@ -27,11 +27,11 @@
             %li
               = link_to (root_path) do
                 %i.fas.fa-tachometer-alt
-                %span= t("header.navigation.dashboard")
+                %span= "dashboard"
             %li
               = link_to (tests_path) do
                 %i.fas.fa-list-alt
-                %span= t("header.navigation.tests")
+                %span= "tests"
             %li.active
               %i.fas.fa-id-card
               = @test.title

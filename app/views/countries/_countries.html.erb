@@ -1,0 +1,45 @@
+<div class="row no-margin">
+  <div class="col-xs-12 no-padding">
+    <% # Table %>
+    <table class="table">
+      <thead>
+      <% model = "countries" %>
+      <% attributes = ["Nombre"] %>
+      <% # Render table header %>
+      <%= render partial: "partials/table_header", locals: {model: model, attributes: attributes} %>
+      </thead>
+      <tbody>
+      <% @countries.each do |country| %>
+        <tr class="clickable-row" data-href="<%= country_path(country) %>">
+          <% # Set attributes %>
+          <% attributes = [["Nombre", "country_name"]] %>
+          <td>
+            <%= link_to country_path(country), class: "record-link", "data-header": "No." do %>
+              <p>
+                <%= country.id %>
+              </p>
+            <% end %>
+          </td>
+          <% attributes.each do |name, attribute| %>
+            <td>
+              <%= link_to country_path(country), class: "record-link", "data-header": name do %>
+                <p>
+                  <%= country["#{attribute}"] %>
+                </p>
+              <% end %>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <% # End Table %>
+  </div>
+</div>
+<div class="row no-margin">
+  <div class="col-xs-12 no-padding text-center">
+    <% # Pagination %>
+    <%= will_paginate @countries, renderer: BootstrapPagination::Rails %>
+    <% # End Pagination %>
+  </div>
+</div>

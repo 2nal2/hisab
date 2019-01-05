@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  last_name: MyString
+  phone_number: MyString
+  cedula: MyString
+  gender: MyString
+  direction: MyText
+  admission_date: 2018-12-24 16:36:06
+  departure_date: 2018-12-24 16:36:06
+
+two:
+  name: MyString
+  last_name: MyString
+  phone_number: MyString
+  cedula: MyString
+  gender: MyString
+  direction: MyText
+  admission_date: 2018-12-24 16:36:06
+  departure_date: 2018-12-24 16:36:06

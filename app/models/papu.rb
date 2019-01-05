@@ -1,0 +1,2 @@
+class Papu < ApplicationRecord
+end

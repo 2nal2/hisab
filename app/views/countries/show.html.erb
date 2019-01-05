@@ -1,0 +1,88 @@
+<% # Details %>
+<section class="details">
+  <div class="container">
+    <% # Title %>
+    <div class="row title-container">
+      <div class="col-xs-12 col-sm-6 col-md-8">
+        <% # Heading %>
+        <h1 class="">
+          <i class="fas fa-id-card"></i>
+          <%= @country.country_name %>
+        </h1>
+        <% # End Heading %>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-4 text-right">
+        <% # Export button %>
+        <div class="btn-container inline">
+          <%= link_to (countries_path(@country, format: "pdf")), target: "_blank", class: "btn btn-general" do %>
+            <i class="fas fa-download"></i>
+            <span>
+              exportar
+            </span>
+          <% end %>
+        </div>
+        <% # End Export button %>
+      </div>
+    </div>
+    <% # End Title %>
+    <% # Breadcrumb %>
+    <div class="row">
+      <div class="col-xs-12 hidden-xs">
+        <div class="breadcrumb-container">
+          <ol class="breadcrumb">
+            <li>
+              <%= link_to (root_path) do %>
+                <i class="fas fa-tachometer-alt"></i>
+                <span>
+                  dashboard
+                </span>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to (countries_path) do %>
+                <i class="fas fa-list-alt"></i>
+                <span>
+                  paises
+                </span>
+              <% end %>
+            </li>
+            <li class="active">
+              <i class="fas fa-id-card"></i>
+              <%= @country.country_name %>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+    <% # End Breadcrumb %>
+    <% # Information %>
+    <div class="row">
+      <div class="col-xs-12 col-md-12 col-lg-12">
+        <% # Material card %>
+        <div class="material-card shadow-card">
+          <div class="row no-margin">
+            <div class="col-xs-12 no-padding">
+              <div class="detail-info">
+                <% # Set attributes %>
+                <% attributes = [["Nombre", "country_name"]] %>
+                <% attributes.each do |title, attribute| %>
+                  <div class="info">
+                    <p class="title">
+                      <b>
+                        <%= title %>
+                      </b>
+                    </p>
+                    <p><%= @country[attribute] %></p>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% # End Material card %>
+      </div>
+    </div>
+    <% # End Information %>
+  </div>
+</section>
+<% # End Details %>

@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Papus</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Views</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @papus.each do |papu| %>
+      <tr>
+        <td><%= papu.title %></td>
+        <td><%= papu.views %></td>
+        <td><%= link_to 'Show', papu %></td>
+        <td><%= link_to 'Edit', edit_papu_path(papu) %></td>
+        <td><%= link_to 'Destroy', papu, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Papu', new_papu_path %>
